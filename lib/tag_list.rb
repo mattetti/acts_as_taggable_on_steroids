@@ -41,9 +41,15 @@ class TagList < Array
   def to_s
     clean!
     
-    map do |name|
-      name.include?(delimiter) ? "\"#{name}\"" : name
-    end.join(delimiter.ends_with?(" ") ? delimiter : "#{delimiter} ")
+    list = map do |name|
+      if delimiter.is_a?(Regexp)
+        name.match(delimiter) ? "\"#{name}\"" : name
+      else
+        name.include?(delimiter) ? "\"#{name}\"" : name
+      end
+    end
+    
+    list.join( delimiter.is_a?(Regexp) ? "#{delimiter.source.match(/[^\\\[\]\*\?\{\}\.\|]/)[0]} " : (delimiter.ends_with?(" ") ? delimiter : "#{delimiter} ") )
   end
   
  private

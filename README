@@ -129,6 +129,12 @@ If you want to change the delimiter used to parse and present tags, set TagList.
 For example, to use spaces instead of commas, add the following to config/environment.rb:
 
   TagList.delimiter = " "
+  
+You can also use a regexp as delimiter:
+
+  TagList.delimiter = /,|;/
+  
+The above code would parse the string and use ',' and ';' as delimiters.
 
 === Unused tags
 
