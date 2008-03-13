@@ -116,7 +116,7 @@ module ActiveRecord #:nodoc:
           
           conditions = [
             "#{Tagging.table_name}.taggable_type = #{quote_value(base_class.name)}",
-            options.delete(:conditions),
+            sanitize_sql(options.delete(:conditions)),
             scope && scope[:conditions],
             start_at,
             end_at
