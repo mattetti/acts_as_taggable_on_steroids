@@ -46,6 +46,11 @@ class TagListTest < Test::Unit::TestCase
     assert_equivalent %w(Alpha Beta), TagList.from('" Alpha   ", "Beta  "')
     assert_equivalent %w(Alpha Beta), TagList.from('  Alpha,  Beta ')
   end
+
+  def test_from_removes_periods
+    assert_equivalent %w(Alpha Beta), TagList.from('Alpha., Beta')
+    assert_equivalent %w(Alpha Beta), TagList.from('Alpha, Be.ta')
+  end
   
   def test_alternative_delimiter
     TagList.delimiter = " "
