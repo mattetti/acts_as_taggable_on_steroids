@@ -47,7 +47,7 @@ class TagListTest < Test::Unit::TestCase
     assert_equivalent %w(Alpha Beta), TagList.from('  Alpha,  Beta ')
   end
 
-  def test_from_removes_periods
+  def test_from_removes_dots
     assert_equivalent %w(Alpha Beta), TagList.from('Alpha., Beta')
     assert_equivalent %w(Alpha Beta), TagList.from('Alpha, Be.ta')
   end
